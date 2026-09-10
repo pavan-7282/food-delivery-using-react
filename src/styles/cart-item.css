@@ -5,13 +5,14 @@
 }
 
 .cart__item:hover {
-  background-color: rgba(230, 230, 230, 0.994);
+  background-color: rgba(249, 115, 22, 0.05); /* Very light primary color */
   cursor: pointer;
 }
 
 .cart__product-title {
   font-size: 0.8rem;
   font-weight: 600;
+  color: var(--secondary-color);
 }
 
 .cart__product-price {
@@ -21,13 +22,14 @@
 .cart__product-price span {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #df2020;
+  color: var(--primary-color);
 }
 
 .increase__decrease-btn {
-  background: #fde4e4;
+  background: var(--accent-color);
   padding: 2px 5px;
   border-radius: 5px;
+  color: var(--secondary-color);
 }
 
 .increase__btn,
@@ -38,11 +40,12 @@
 .delete__btn {
   font-size: 1.1rem;
   font-weight: 600;
+  color: var(--secondary-color);
 }
 
 .cart__item {
   margin-bottom: 15px;
-  border-bottom: 1px solid #fde4e4;
+  border-bottom: 1px solid var(--accent-color);
 }
 
 @media only screen and (max-width: 576px) {

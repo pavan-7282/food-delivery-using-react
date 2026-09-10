@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "../components/Helmet/Helmet";
+import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col, Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { wishlistActions } from "../store/shopping-cart/wishlistSlice";
@@ -71,7 +71,7 @@ const Wishlist = () => {
                 </>
               )}
               <div className="mt-4">
-                <Link to="/pizzas" className="addTOCart__btn">
+                <Link to="/foods" className="addTOCart__btn">
                   Back to Menu
                 </Link>
               </div>

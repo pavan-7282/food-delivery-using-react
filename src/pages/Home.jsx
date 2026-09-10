@@ -17,12 +17,12 @@ const Home = () => {
               <div className="hero__content">
                 <h5 className="mb-3">Easy order & fast delivery</h5>
                 <h1 className="mb-4 hero__title">
-                  <span>Enjoy</span> your favorite Pizza
+                  <span>Enjoy</span> your favorite food
                 </h1>
 
                 <button className="order__btn d-flex align-items-center justify-content-between ">
-                  <Link to="/pizzas">
-                    Menu <i className="ri-arrow-right-s-line"></i>
+                  <Link to="/foods">
+                    Order Now <i className="ri-arrow-right-s-line"></i>
                   </Link>
                 </button>
               </div>

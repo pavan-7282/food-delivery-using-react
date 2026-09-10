@@ -12,6 +12,7 @@ th {
 
 .cart__item-del i {
   cursor: pointer;
+  color: var(--secondary-color);
 }
 
 .cart__page-btn {
@@ -21,21 +22,27 @@ th {
 }
 
 .cart__page-btn button a:hover {
-  color: #fff;
+  color: var(--white);
 }
 
 .cart__subtotal {
-  color: #df2020;
+  color: var(--primary-color);
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .addTOCart__btn {
   border: none;
   padding: 7px 25px;
-  background: #df2020;
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--white);
   border-radius: 5px;
   font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.addTOCart__btn:hover {
+  background: var(--secondary-color);
 }
 
 @media only screen and (max-width: 768px) {

@@ -8,6 +8,7 @@ import { Container, Row, Col } from "reactstrap";
 import ExtraIngredient from '../components/ExtraIngredient/ExtraIngredient.jsx'
 import { useDispatch } from "react-redux";
 import { cartActions } from "../store/shopping-cart/cartSlice";
+import { cartNotificationActions } from "../store/shopping-cart/cartNotificationSlice";
 import { useSelector } from "react-redux";
 
 import "../styles/product-details.css";
@@ -31,7 +32,6 @@ const PizzaDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [extraIngredients, setExtraIngredients] = useState([]);
-  const [isUpdateNotificationDisplayed, setIsUpdateNotificationDisplayed] = useState(false);
   const product = products.find((product) => product.id === id);
   const cartProducts = useSelector((state) => state.cart.cartItems);
   const [previewImg, setPreviewImg] = useState(product.image01);
@@ -50,11 +50,6 @@ const PizzaDetails = () => {
 
   
   const addItem = () => {
-    setIsUpdateNotificationDisplayed(true);
-      setTimeout(function(){
-        setIsUpdateNotificationDisplayed(false);
-      },3000)
-    
     dispatch(
       cartActions.addItem({
         id,
@@ -64,6 +59,7 @@ const PizzaDetails = () => {
         extraIngredients
       })
       );
+    dispatch(cartNotificationActions.showNotification("Added to cart"));
 
     };
     
@@ -82,13 +78,6 @@ const PizzaDetails = () => {
 
   return (
     <Helmet title="Product-details">
-      {isUpdateNotificationDisplayed && (
-        <div className="updateCartNotifiation">
-          <span>You successfully updated your cart!</span>
-        </div>
-      )
-      }
-
       <CommonSection title={title} />
 
       <section>

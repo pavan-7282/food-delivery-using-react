@@ -5,7 +5,7 @@
 
 .checkoutIcon {
   width: 2rem;
-  color: #4bb543;
+  color: #4bb543; /* Success green is usually fine, but let's ensure consistency */
   height: 2rem;
 }
 
@@ -13,6 +13,10 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 0.7rem;
+}
+
+.checkoutTitleContainer h5 {
+  color: var(--secondary-color);
 }
 
 @media only screen and (max-width: 480px) {

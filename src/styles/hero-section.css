@@ -8,7 +8,7 @@
 }
 
 .hero__title span {
-  color: #df2020;
+  color: var(--primary-color);
 }
 
 .hero__content p {
@@ -23,13 +23,13 @@
   padding: 7px 20px;
   border-radius: 5px;
   cursor: pointer;
-  background: #df2020;
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--white);
   font-weight: 600;
 }
 
 .order__btn:hover {
-  background: #212245;
+  background: var(--secondary-color);
 }
 
 .order__btn:hover a {

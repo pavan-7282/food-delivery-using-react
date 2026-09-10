@@ -7,6 +7,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { cartUiActions } from "../../store/shopping-cart/cartUiSlice";
+import { authActions } from "../../store/authSlice";
 
 import "../../styles/header.css";
 
@@ -16,8 +17,8 @@ const nav__links = [
     path: "/home",
   },
   {
-    display: "Foods",
-    path: "/pizzas",
+    display: "Menu",
+    path: "/foods",
   },
   {
     display: "Cart",
@@ -33,6 +34,8 @@ const Header = () => {
   const menuRef = useRef(null);
   const headerRef = useRef(null);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
@@ -42,21 +45,30 @@ const Header = () => {
     dispatch(cartUiActions.toggle());
   };
 
-  console.log(menuRef?.current?.classList.value);
+  const handleLogout = () => {
+    dispatch(authActions.logout());
+    navigate("/home");
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
+        document.body &&
+        (document.body.scrollTop > 80 ||
+          document.documentElement.scrollTop > 80)
       ) {
-        headerRef.current.classList.add("header__shrink");
+        if (headerRef.current) {
+          headerRef.current.classList.add("header__shrink");
+        }
       } else {
-        headerRef.current.classList.remove("header__shrink");
+        if (headerRef.current) {
+          headerRef.current.classList.remove("header__shrink");
+        }
       }
-    });
+    };
 
-    return () => window.removeEventListener("scroll");
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -65,7 +77,7 @@ const Header = () => {
         <div className="nav__wrapper d-flex align-items-center justify-content-between">
           <div className="logo" onClick={() => navigate("/home")}>
             <img src={logo} alt="logo" />
-            <h5>Tasty Treat</h5>
+            <h5>FastBite</h5>
           </div>
           {/* ======= menu ======= */}
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
@@ -95,11 +107,36 @@ const Header = () => {
 
           {/* ======== nav right icons ========= */}
           <div className="nav__right d-flex align-items-center gap-4">
+            <span
+              className="wishlist__icon"
+              onClick={() => navigate("/wishlist")}
+              style={{ cursor: "pointer", position: "relative" }}
+            >
+              <i className="ri-heart-line"></i>
+              {wishlistItems.length > 0 && (
+                <span className="cart__badge">{wishlistItems.length}</span>
+              )}
+            </span>
+
             <span className="cart__icon" onClick={toggleCart}>
               <i className="ri-shopping-basket-line"></i>
               <span className="cart__badge">{totalQuantity}</span>
             </span>
-            
+
+            {user ? (
+              <button
+                className="account__button"
+                type="button"
+                onClick={handleLogout}
+              >
+                <i className="ri-user-line"></i>
+              </button>
+            ) : (
+              <Link className="account__button" to="/login">
+                <i className="ri-login-box-line"></i>
+              </Link>
+            )}
+
             <span className="mobile__menu" onClick={toggleMenu}>
               <i className="ri-menu-line"></i>
             </span>

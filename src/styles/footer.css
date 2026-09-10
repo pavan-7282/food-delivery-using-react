@@ -1,6 +1,6 @@
 .footer {
   padding: 50px 0px;
-  background: #fde4e4;
+  background: var(--accent-color);
   display: flex;
   text-align: start;
   justify-content: center;
@@ -34,17 +34,17 @@
 
 .delivery__time-item span {
   font-weight: 600;
-  color: #212245;
+  color: var(--secondary-color);
   margin: 0;
 }
 
 .delivery__time-item p {
-  color: #212245;
+  color: var(--secondary-color);
 }
 
 .footer__title {
   font-size: 1.1rem;
-  color: #212245;
+  color: var(--secondary-color);
   font-weight: 600;
 }
 

@@ -1,10 +1,12 @@
 import React from "react";
 
 import { ListGroup } from "reactstrap";
-import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { cartUiActions } from "../../../store/shopping-cart/cartUiSlice";
+import { cartActions } from "../../../store/shopping-cart/cartSlice";
+import { cartNotificationActions } from "../../../store/shopping-cart/cartNotificationSlice";
+import { useNavigate } from "react-router-dom";
 
 import "../../../styles/shopping-cart.css";
 
@@ -12,9 +14,27 @@ const Carts = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   const toggleCart = () => {
     dispatch(cartUiActions.toggle());
+  };
+
+  const placeOrder = () => {
+    if (!cartProducts.length) return;
+
+    if (!user) {
+      toggleCart();
+      navigate("/login");
+      return;
+    }
+
+    dispatch(cartActions.clearCart());
+    toggleCart();
+    dispatch(
+      cartNotificationActions.showNotification("Order placed successfully")
+    );
   };
   return (
     <div className="cart__container" onClick={toggleCart}>
@@ -39,10 +59,13 @@ const Carts = () => {
           <h6>
             Subtotal : <span>${totalAmount}</span>
           </h6>
-          <button>
-            <Link to="/checkout" onClick={toggleCart}>
-              Checkout
-            </Link>
+          <button
+            type="button"
+            onClick={placeOrder}
+            disabled={!cartProducts.length}
+            className="cart__order-btn"
+          >
+            <span>{user ? "Book Order" : "Sign in to order"}</span>
           </button>
         </div>
       </ListGroup>

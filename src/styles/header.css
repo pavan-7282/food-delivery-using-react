@@ -18,7 +18,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  background: #fff;
+  background: var(--white);
   z-index: 99999;
   box-shadow: 5px 5px 15px -5px #d7d6d6;
   animation-name: animation;
@@ -42,7 +42,7 @@
 .logo h5 {
   font-weight: 600;
   font-size: 1rem;
-  color: #212245;
+  color: var(--secondary-color);
   margin-top: -40px;
   margin-bottom: 0;
 }
@@ -50,28 +50,43 @@
 .menu a {
   font-weight: 600;
   font-size: 1rem;
-  color: #212245;
+  color: var(--secondary-color);
   transition: 0.3s;
 }
 
 .menu a:hover {
-  color: #df2020;
+  color: var(--primary-color);
 }
 
 .active__menu {
-  color: #df2020 !important;
+  color: var(--primary-color) !important;
 }
 
 .cart__icon {
   position: relative;
+  cursor: pointer;
+}
+
+.account__button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--secondary-color);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.account__button:hover {
+  color: var(--primary-color);
 }
 
 .cart__badge {
   position: absolute;
   top: 30px;
   right: -10px;
-  background: #df2020;
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--white);
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -113,7 +128,7 @@
     right: 0;
     width: 250px;
     height: 100%;
-    background: #fff;
+    background: var(--white);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -147,10 +162,10 @@
 
 .header__closeButton span i {
   font-size: 1.1rem;
-  background: #212245;
+  background: var(--secondary-color);
   padding: 5px;
   border-radius: 50%;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
 }
 
@@ -192,9 +207,9 @@
 
 .close__button span i {
   font-size: 1.1rem;
-  background: #212245;
+  background: var(--secondary-color);
   padding: 5px;
   border-radius: 50%;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
 }
