@@ -9,6 +9,7 @@ import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Auth from "../pages/Auth";
 import Wishlist from "../pages/Wishlist";
+import Contact from "../pages/Contact";
 
 const ProtectedRoute = ({ children }) => {
   const user = useSelector((state) => state.auth.user);
@@ -64,6 +65,14 @@ const Routers = () => {
         element={
           <ProtectedRoute>
             <PizzaDetails />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <ProtectedRoute>
+            <Contact />
           </ProtectedRoute>
         }
       />
